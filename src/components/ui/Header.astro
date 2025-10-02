@@ -1,5 +1,16 @@
-<header>
+---
+type Props = {
+  bgImage: string;
+};
 
-    <h1>Header de mi Sitio Web</h1>
-    
+const { bgImage } = Astro.props;
+---
+
+<header class="min-h-72 relative">
+  <div
+    class="inset-0 absolute bg-center bg-cover"
+    style={`background-image:url(${bgImage});`}
+  ></div>
+  <div class="absolute inset-0 bg-black/60"></div>
+  <h1>Header de mi Sitio Web</h1>
 </header>
