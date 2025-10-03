@@ -1,0 +1,19 @@
+---
+const navigation = [
+  {name: 'Inicio', href: '/' },
+  {name: 'Nosotros', href: '/nosotros/' },
+  {name: 'Blog', href: '/blog/' },
+  {name: 'Proceso', href: '/proceso/' },
+  {name: 'Menú', href: '/menu/' },
+  {name: 'Galería', href: '/galeria/' },
+  {name: 'Contacto', href: '/contacto/' },
+]
+---
+<nav class="flex flex-col items-center lg:flex-row gap-3">
+    {
+        navigation.map(link => (
+            <a href={link.href}
+            class="text-lg font-bold text-white">{link.name}</a>
+        ))
+    }
+</nav>
