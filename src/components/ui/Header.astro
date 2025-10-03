@@ -1,4 +1,6 @@
 ---
+import Logo from '@src/assets/logo.svg';
+
 type Props = {
   bgImage: string;
 };
@@ -6,11 +8,13 @@ type Props = {
 const { bgImage } = Astro.props;
 ---
 
-<header class="min-h-72 relative">
+<header class="min-h-72 relative pb-72">
   <div
     class="inset-0 absolute bg-center bg-cover"
     style={`background-image:url(${bgImage});`}
   ></div>
   <div class="absolute inset-0 bg-black/60"></div>
-  <h1>Header de mi Sitio Web</h1>
+  <div class="relative max-w-7xl mx-auto py-3">
+    <Logo class="w-72" />
+  </div>
 </header>
