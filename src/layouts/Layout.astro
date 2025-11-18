@@ -5,9 +5,10 @@ import "@src/styles/global.css";
 
 type Props = {
   title: string;
+  subtitle?: string;
   bgImage: string;
 };
-const { title, bgImage } = Astro.props;
+const { title, subtitle, bgImage } = Astro.props;
 ---
 
 <!doctype html>
@@ -39,7 +40,10 @@ const { title, bgImage } = Astro.props;
     <title>Cafetería desde 1939: {title}</title>
   </head>
   <body class="bg-coffee-100">
-    <Header bgImage={bgImage} />
+    <Header 
+    bgImage={bgImage}
+    subtitle={subtitle}
+    />
     <slot />
     <Footer />
   </body>
