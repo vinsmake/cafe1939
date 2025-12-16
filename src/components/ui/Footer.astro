@@ -3,11 +3,21 @@ import FooterBox from "./FooterBox.astro";
 ---
 
 <footer class="bg-coffee-900 pt-20">
-    <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <FooterBox heading="Ubicacion" />
-        <FooterBox heading="Reservación" />
-        <FooterBox heading="Horario" />
-    </div>
-    <p class="py-10 text-center text-white text-sm">
-        © {new Date().getFullYear()} Cafeteria Vinsmake. Todos los derechos reservados.</p>
+  <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <FooterBox heading="Ubicacion">
+      <p>Coffee Street 39</p>
+      <p>Londres, UK</p>
+    </FooterBox>
+    <FooterBox heading="Reservación">
+      <p>Tel. 3336610692</p>
+      <a href="tel:+3336610692">Llamar</a>
+    </FooterBox>
+    <FooterBox heading="Horario">
+      <p>Lun-Jue: 11:00 - 22:00</p>
+      <p>Vie-Dom: 09:00 - 23:00</p>
+    </FooterBox>
+  </div>
+  <p class="py-10 text-center text-white text-sm">
+    © {new Date().getFullYear()} Cafeteria Vinsmake. Todos los derechos reservados.
+  </p>
 </footer>
