@@ -1,7 +1,13 @@
-<footer class="bg-coffee-900">
+---
+import FooterBox from "./FooterBox.astro";
+---
 
-    <div class="max-w-7xl mx-auto">
-        <h1 class="text-white">Footer de mi Sitio Web</h1>
+<footer class="bg-coffee-900 pt-20">
+    <div class="max-w-7xl mx-auto mt-10 grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <FooterBox heading="Ubicacion" />
+        <FooterBox heading="Reservación" />
+        <FooterBox heading="Horario" />
     </div>
-    
+    <p class="py-10 text-center text-white text-sm">
+        © {new Date().getFullYear()} Cafeteria Vinsmake. Todos los derechos reservados.</p>
 </footer>
