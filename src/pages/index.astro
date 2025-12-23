@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import bg from "../assets/bg_home.jpg";
+import CategoryIconLabel from "@src/components/ui/CategoryIconLabel.astro";
 ---
 
 <Layout
@@ -24,4 +25,20 @@ import bg from "../assets/bg_home.jpg";
     almuerzos y repostería, todo está preparado con productos naturales, sin
     atajos ni artificios.
   </p>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+    <CategoryIconLabel
+    icon='icon_coffee.svg'
+    text="Café"
+    />
+    <CategoryIconLabel
+    icon='icon_dessert.svg'
+    text="Postres"
+    />
+    <CategoryIconLabel
+    icon='icon_tea.svg'
+    text="Té"
+    />
+  </div>
+
 </Layout>
