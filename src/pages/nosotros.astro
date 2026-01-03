@@ -1,9 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const url = 'http://coffeeshop.local/wp-json/wp/v2/pages/?slug=nosotros'
+const res = await fetch(url);
+const json = await res.json();
 ---
 
 <Layout title="Nosotros">
-<h1>Nosotros</h1>
-<h2>Sobre nosotros</h2>
-<p>Somos una empresa dedicada a brindar soluciones tecnológicas innovadoras.</p>
+  <h1>{json[0].title.rendered}</h1>
 </Layout>
