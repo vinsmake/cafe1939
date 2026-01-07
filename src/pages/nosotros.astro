@@ -6,13 +6,17 @@ import Layout from "../layouts/Layout.astro";
 const url = 'http://coffeeshop.local/wp-json/wp/v2/pages/?slug=nosotros'
 const res = await fetch(url);
 const json = await res.json();
-console.log(json[0]);
 const data = BaseWPSchema.parse(json[0]);
-console.log(data);
-
-
 ---
 
-<Layout title="Nosotros">
-  <h1>{json[0].title.rendered}</h1>
+<Layout 
+title={data.title.rendered}
+subtitle={data.acf.subtitle}
+bgImage={data.featured_images.full.url}
+>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+  <div set:html={data.content.rendered} class="text-xl space-y-3 mt-10 lg:mt-0"></div>
+</div>
+
 </Layout>
