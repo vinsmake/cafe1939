@@ -1,0 +1,21 @@
+---
+import { processPageSchema } from "@src/types";
+import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+
+const url = "http://coffeeshop.local/wp-json/wp/v2/pages/?slug=proceso";
+const res = await fetch(url);
+const json = await res.json();
+const data = processPageSchema.parse(json[0]);
+---
+
+<Layout
+  title={data.title.rendered}
+  subtitle={data.acf.subtitle}
+  bgImage={data.featured_images.full.url}
+>
+  <div
+    set:html={data.content.rendered}
+    class="text-xl space-y-3 mt-10 lg:mt-0"
+  />
+</Layout>
