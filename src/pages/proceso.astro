@@ -1,12 +1,13 @@
 ---
 import { processPageSchema } from "@src/types";
 import Layout from "../layouts/Layout.astro";
-import { Picture } from "astro:assets";
 
 const url = "http://coffeeshop.local/wp-json/wp/v2/pages/?slug=proceso";
 const res = await fetch(url);
 const json = await res.json();
 const data = processPageSchema.parse(json[0]);
+
+const processKeys = Array.from({ length: 5 }, (_, i) => `process_${i + 1}`);
 ---
 
 <Layout
@@ -18,4 +19,27 @@ const data = processPageSchema.parse(json[0]);
     set:html={data.content.rendered}
     class="text-xl space-y-3 mt-10 lg:mt-0"
   />
+
+  <div class="mt-10 space-y-10">
+    {
+      processKeys.map((key) => {
+        const { title, description, image } = data.acf[key];
+        return (
+          <section class="flex">
+
+            <div class="w-full lg:w-1/2">
+            </div>
+
+            <div class="w-full lg:w-1/2">
+              <h3 class="text-coffee-900 font-black text-4xl pb-10 uppercase">
+                {title}
+              </h3>
+              <p class="text-lg">{description}</p>
+            </div>
+
+          </section>
+        );
+      })
+    }
+  </div>
 </Layout>
