@@ -1,6 +1,8 @@
 ---
 import { processPageSchema } from "@src/types";
 import Layout from "../layouts/Layout.astro";
+import { Picture } from "astro:assets";
+import { inferRemoteSize } from "astro:assets";
 
 const url = "http://coffeeshop.local/wp-json/wp/v2/pages/?slug=proceso";
 const res = await fetch(url);
@@ -22,21 +24,23 @@ const processKeys = Array.from({ length: 5 }, (_, i) => `process_${i + 1}`);
 
   <div class="mt-10 space-y-10">
     {
-      processKeys.map((key) => {
+      processKeys.map(async (key, i) => {
         const { title, description, image } = data.acf[key];
-        return (
-          <section class="flex">
+        const {width, height} = await inferRemoteSize(image);
+        
 
-            <div class="w-full lg:w-1/2">
+        return (
+          <section class="flex flex-col lg:flex-row lg:items-center gap-10">
+            <div class={`w-full lg:w-1/2 ${i % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+              <Picture src={image} alt={title} width={width} height={height}/>
             </div>
 
-            <div class="w-full lg:w-1/2">
+            <div class={`w-full lg:w-1/2 ${i % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}` }>
               <h3 class="text-coffee-900 font-black text-4xl pb-10 uppercase">
                 {title}
               </h3>
               <p class="text-lg">{description}</p>
             </div>
-
           </section>
         );
       })
