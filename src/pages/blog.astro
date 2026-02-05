@@ -2,6 +2,7 @@
 
 import { BaseWPSchema } from "@src/types";
 import Layout from "../layouts/Layout.astro";
+import BlogPosts from "@src/components/blog/BlogPosts.astro";
 
 
 const url = `${import.meta.env.API_URL}/pages/?slug=blog`
@@ -18,5 +19,5 @@ bgImage={data.featured_images.full.url}
 
 
   <div set:html={data.content.rendered} class="text-xl space-y-3 mt-10 lg:mt-0"></div>
-
+  <BlogPosts></BlogPosts>
 </Layout>
