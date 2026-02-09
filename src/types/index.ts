@@ -1,4 +1,5 @@
 import { z } from 'astro:content';
+import { date } from 'astro:schema';
 
 
 const imageSchema = z.object({
@@ -44,6 +45,8 @@ export const processPageSchema = BaseWPSchema.extend({
 
 export const PostSchema = BaseWPSchema.omit({
     acf: true
+}).extend({
+    date: z.string()
 })
 
 export const PostsSchema = z.array(PostSchema)
