@@ -43,10 +43,18 @@ export const processPageSchema = BaseWPSchema.extend({
     }).catchall(processSchema)
 })
 
+const CategorySchema = z.object({
+    name: z.string(),
+    slug: z.string()
+})
+
+const CategiriesSchema = z.array(CategorySchema)
+
 export const PostSchema = BaseWPSchema.omit({
     acf: true
 }).extend({
-    date: z.string()
+    date: z.string(),
+    category_details: CategiriesSchema
 })
 
 export const PostsSchema = z.array(PostSchema)
