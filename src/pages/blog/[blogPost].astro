@@ -10,9 +10,9 @@ export const prerender = false;
 const url = `${import.meta.env.API_URL}/posts?slug=${Astro.params.blogPost}`;
 const res = await fetch(url);
 const json = await res.json();
-const post = PostSchema.parse(json[0]);
-console.log(post);
-const { title, featured_images, date, category_details, content } = post;
+const post = PostSchema.safeParse(json[0]);
+if(!post.success) return Astro.redirect('/404')
+const { title, featured_images, date, category_details, content } = post.data;
 ---
 
 <Layout
@@ -25,10 +25,10 @@ const { title, featured_images, date, category_details, content } = post;
     {category_details.map((cat) => <PostCategories name={cat.name} />)}
 
     <Picture
-      src={post.featured_images.full.url}
-      alt={post.title.rendered}
-      width={post.featured_images.medium_large.width}
-      height={post.featured_images.medium_large.height}
+      src={featured_images.full.url}
+      alt={title.rendered}
+      width={featured_images.medium_large.width}
+      height={featured_images.medium_large.height}
       formats={["avif", "webp"]}
       class="w-full"
     />
