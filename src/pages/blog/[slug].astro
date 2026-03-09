@@ -1,0 +1,8 @@
+---
+export const prerender = false;
+
+const url = `${import.meta.env.API_URL}/posts?slug=${Astro.params.slug}`
+console.log(url);
+
+---
+<h1>Desde Slug</h1>
