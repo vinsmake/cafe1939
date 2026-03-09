@@ -1,7 +1,8 @@
 ---
 import type { Post } from "@src/types";
-import {formatDate} from '../../helpers'
 import { Picture } from "astro:assets";
+import PostMeta from "./PostMeta.astro";
+import PostCategories from "./PostCategories.astro";
 interface Props {
   post: Post;
 }
@@ -17,14 +18,9 @@ const { post } = Astro.props;
         {post.title.rendered}
       </a>
     </h3>
-    <p>
-      Escrito el: <span class="text-coffee-600">{formatDate(post.date)}</span>
-    </p>
-    {post.category_details.map(cat => (
-      <a href="" class="inline-block py-1 px-5 bg-coffee-600 text-sm text-white mr-2 rounded">
-        {cat.name}
-      </a>
-    ))}
+    <PostMeta date={post.date}></PostMeta>
+
+    {post.category_details.map(cat => <PostCategories name={cat.name}/>)}
     <div set:html={post.content.rendered} class="line-clamp-2" />
   </div>
 
