@@ -22,7 +22,7 @@ const { title, featured_images, date, category_details, content } = post.data;
 >
   <article class="space-y-5 max max-w-4xl mx-auto">
     <PostMeta date={date} />
-    {category_details.map((cat) => <PostCategories name={cat.name} />)}
+    {category_details.map((cat) => <PostCategories name={cat.name} slug={cat.slug} />)}
 
     <Picture
       src={featured_images.full.url}
