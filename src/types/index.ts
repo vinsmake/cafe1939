@@ -49,6 +49,10 @@ const CategorySchema = z.object({
     slug: z.string()
 })
 
+export const categoriesSlugSchema = z.array(CategorySchema.pick({
+    slug: true
+}))
+
 const CategiriesSchema = z.array(CategorySchema)
 
 export const PostSchema = BaseWPSchema.omit({
