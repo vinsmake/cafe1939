@@ -1,4 +1,6 @@
 ---
+import PostCard from '@src/components/blog/PostCard.astro'
+import Layout from '@src/layouts/Layout.astro'
 import {categoriesSlugSchema, CategorySchema, PostsSchema} from '@src/types'
 
 export async function getStaticPaths() {
@@ -18,12 +20,18 @@ const catUrl = `${import.meta.env.API_URL}/categories?slug=${category}`
 const catRes = await fetch(catUrl)
 const catJson = await catRes.json()
 const categoryData = CategorySchema.parse(catJson[0]);
-console.log(categoryData);
 
-const postsUrl = `${import.meta.env.API_URL}/posts?categries=${categoryData.id}`
+const postsUrl = `${import.meta.env.API_URL}/posts?categories=${categoryData.id}`
 const postsRes = await fetch(postsUrl)
 const postsJson = await postsRes.json()
 const posts = PostsSchema.parse(postsJson)
 ---
 
-<h1>Desde Categoria</h1>
+<Layout
+    title={`Posts en la Categoría: ${categoryData.name}`}
+    subtitle={`Posts en la Categoría: ${categoryData.name}`}
+    bgImage={posts[0].featured_images.full.url}
+>
+
+    {posts.map(post => <PostCard post={post} />)}
+</Layout>
