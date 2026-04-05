@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/psenr/Local Sites/coffeeshop/app/public/wp-content/**)",
+      "Bash(xargs grep:*)"
+    ]
+  }
+}
